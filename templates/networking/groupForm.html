@@ -1,0 +1,42 @@
+{% load static %}
+{% load chat_filters %}
+{% load tz %}
+<form id="groupForm" class="chat-box group-form" method="post" enctype="multipart/form-data" action="{% url 'groupChat' %}">
+    {% csrf_token %}
+    <h3>Create Group Chat</h3>
+
+    <label for="groupProfilePic" class="profile-upload">
+        <img id="groupPicPreview"  src="{%static 'img/chat/images/user.jpeg' %}" alt="">
+        <input type="file" id="groupProfilePic" accept="image/*" hidden name="group_pic">
+        <i class="uil uil-camera"></i>
+        <p>Upload Group Photo</p>
+    </label>
+    <input type="text" id="groupName" placeholder="Group Name" name="group_name" required>
+
+    <div class="dropdown-container">
+        <div class="selected-members" id="selectedMembers"></div>
+        <input type="text" id="groupMembers" class="dropdown-input" placeholder="Add Members (type to search)">
+        <ul class="dropdown-list" id="dropdownList">
+            {% for user in users %}
+            <li onclick="selectPerson(this)">{{ user.username }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <input type="hidden" name="group_members" id="hiddenGroupMembers">
+
+    <div class="time-span">
+        <label for="timespanType"><strong>Select Timespan Type:</strong></label>
+        <select id="timespanType" name="timespan_type" style="border-radius: 10px;" onchange="showTimespanInput()">
+            <option value="none">None</option>
+            <option value="months">Months</option>
+            <option value="days">Days</option>
+            <option value="hours">Hours</option>
+        </select>
+        <input type="number" id="timespanInput" name="timespan_value" placeholder="Enter value" min="1" style="display: none;">
+    </div>
+    
+
+    <button id="createGroupBtn" type="submit">Create Group</button>
+    <button id="closeGroupForm">Cancel</button>
+</form>
+<script src="{% static 'js/groupForm.js' %}"></script>

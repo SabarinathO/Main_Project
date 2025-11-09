@@ -1,0 +1,35 @@
+{% include 'login_header.html' %}
+{% load static %}
+<body>
+  <div id="large-header" class="large-header">
+    <canvas id="demo-canvas"></canvas>
+    <div class="container">
+      <!-- Form Section -->
+      <div class="right-section">
+        <h1 class="ml14">
+          <span class="text-wrapper">
+            <span class="letters">Join Nexo</span>
+            <span class="line"></span>
+          </span>
+        </h1>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+        <form class="signup-form" method="POST">
+          {% csrf_token %}
+          <input type="email" placeholder="Email address" required name="email">
+          <input type="text" placeholder="User name" required name="username">
+          <input type="text" placeholder="Phone number" required name="phone">
+          <input type="text" placeholder="Address" required name="address">
+          <input type="password" placeholder="Password" required name="password">
+          <input type="password" placeholder="Confirm Password" required name="confirm_password">
+          {% if error %}
+          <p style="color: red;">{{ error }}</p>
+          {% endif %}
+          <button class="shiny-cta" type="submit"><span>Sign Up</span></button>
+        </form>
+        <p class="form-para">Already have an account? <a href="{% url 'signin' %}">Sign in</a></p>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'js/script_login.js' %}"></script>
+</body>
+</html>

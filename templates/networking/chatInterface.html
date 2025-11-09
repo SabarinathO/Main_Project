@@ -1,0 +1,25 @@
+{% include 'networking/baselayout_chat.html' %}
+{% load static %}
+{% load chat_filters %}
+{% load tz %}
+
+<body>
+    <main>
+        <div class="container">
+            {% include 'networking/chatLeftBar.html' %}
+
+            <div class="chat-placeholder" id="chatPlaceholder">
+                <div class="messenger-icon">
+                    <i class="uil uil-comment-alt"></i>
+                </div>
+                <h3>Your messages</h3>
+                <p>Send a message to start a chat.</p>
+            </div>
+
+        {% include 'networking/groupForm.html' %}
+        </div>
+    </main>
+    {% include 'networking/theme.html' %}
+
+</body>
+</html>

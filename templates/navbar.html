@@ -1,0 +1,26 @@
+{% load static %}
+<section id="header">
+    <a href="#"><img src="{% static 'img/home/logo.png' %}" class="logo" alt=""></a>
+    <div>
+        <ul id="navbar">
+            <li><a class="active" href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'products' %}">Shop</a></li>
+            <li><a href="{% url 'sell' %}">Sell</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+            {% if user.is_authenticated %}
+                <li id="lg-bag"><a href="{% url 'cart' %}"><i class="fa-solid fa-bag-shopping"></i></a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            {% endif %}
+    
+            <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
+        </ul>
+    </div>
+    
+    <div id="mobile">
+        <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
+        <i id="bar" class="fas fa-outdent"></i>
+    </div>
+</section>

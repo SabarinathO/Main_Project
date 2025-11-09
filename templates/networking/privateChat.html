@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load chat_filters %}
+{% load tz %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link rel="stylesheet" href="{%static 'css/style_message.css' %}">
+</head>
+<body>
+
+        <!-- Main -->
+
+        <main>
+            <div class="container">
+                <!------------- Left ----------->
+            {% include 'networking/chatLeftBar.html' %}
+
+            <!------right---->
+
+            <div class="chat-container" id="chatContainer">
+                <!-- Chat Header -->
+                <div class="chat-header">
+                    <img src="{% static 'img/chat/images/user.jpeg' %}" alt="User">
+                    <h3 id="chatUserName">{{ receiver.username }}</h3>
+                </div>
+                
+                <!-- Chat Messages -->
+
+                <div class="chat-messages" id="chatMessages">
+                    {% for msg in messages %}
+                        {% with msg.timestamp|localtime as local_timestamp %}
+                        {% with now|localtime as current_time %}
+                        {% with local_timestamp|date:"Y-m-d" as msg_date %}
+                        {% with current_time|date:"Y-m-d" as today %}
+                        {% with current_time|date:"Y-m-d"|add:"-1 day" as yesterday %}
+                            <div class="message {% if msg.sender == request.user %}sent-message{% else %}received-message{% endif %}">
+                                <span class="message-text">{{ msg.content }}</span>
+                                <span class="message-time">
+                                    {% if local_timestamp|date:"Y-m-d" == today %}
+                                        {{ local_timestamp|date:"h:i A" }}  {# Show only time for today's messages #}
+                                    {% elif local_timestamp|is_yesterday %}
+                                        Yesterday {{ local_timestamp|date:"h:i A" }} {# Show 'Yesterday' for messages from the previous day #}
+                                    {% else %}
+                                        {{ local_timestamp|date:"M d, h:i A" }} {# Show full date + time for older messages #}
+                                    {% endif %}
+                                </span>                                  
+                            </div>
+                        {% endwith %}
+                        {% endwith %}
+                        {% endwith %}
+                        {% endwith %}
+                        {% endwith %}
+                    {% endfor %}
+                </div>
+                               
+                <!-- Chat Input -->
+                <div class="chat-input">
+                    <input type="text" id="messageInput" placeholder="Type a message..." onkeypress="checkEnter(event)">
+                    <button id="sendMessage" onclick="sendMessage()">➤</button>
+                </div>
+            </div>
+            {% include 'networking/groupForm.html' %}
+            </div>
+                
+            
+        </main>
+    {% include 'networking/theme.html' %}
+
+    <span id="userId" data-userid="{{ request.user.id }}"></span>
+    <span id="conversationId" data-conversationid="{{ conversation.id }}"></span>
+    <script src="{% static 'js/privateChat.js' %}"></script>    
+</body>
+</html>

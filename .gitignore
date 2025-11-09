@@ -1,0 +1,47 @@
+# created by virtualenv automatically
+
+# Python bytecode files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Django migrations
+*/migrations/*
+!*/migrations/__init__.py
+
+# Media files (avoid pushing user-uploaded files)
+media/
+
+# Static files (do not ignore static directory)
+# Uncomment the following line if you want to include the static folder in version control.
+# static/
+
+# Database
+db.sqlite3  # Keep this ignored
+
+# Virtual environment
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE and editor files
+.idea/
+.vscode/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Local configuration files
+*.env
+
+# Ignore pipenv virtual environment
+/.venv
+

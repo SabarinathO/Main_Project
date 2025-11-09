@@ -1,0 +1,82 @@
+{% extends 'baselayout.html' %}
+{% load static %}
+{% block content %}
+    <body>   
+        <style>
+            input[type="number"] {
+                width: 60px; /* Small width */
+                padding: 5px; /* Small padding for space */
+                font-size: 14px; /* Simple font size */
+                border: 2px solid #000; /* Black border */
+                border-radius: 3px; /* Slightly rounded corners */
+            }
+        </style> 
+        <section id="prodetails" class="section-p1">
+            <div class="single-pro-image">
+                <img src="{{ images.0.image.url }}" width="100%"  id="MainImg" alt="">
+                <div class="small-img-group">
+                    {% for image in images %}
+                    <div class="small-img-col">
+                        <img src="{{ image.image.url }}" width="100%" class="small-img" alt="">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="single-pro-details">
+                <h6>Home/ {{ product.model }}</h6>
+                <h4>{{ product.name }}</h4>
+                <h2>₹ {{ product.price }}</h2>
+                <h4>Product Details</h4>
+                <span>{{ product.description }}</span>
+                <br>
+                <br>
+                <form method="post" action="{% url 'cart' %}">
+                    {% csrf_token %}
+                    <input type="number" value="{{product.id}}" name="product_id" hidden>
+                    <button class="normal" type="submit">Add to Cart</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="product1" class="section-p1">
+            <h2>Related Products</h2>
+            <p>New Gear, New Semester, New You!</p>
+            <div class="pro-container">
+                {% for item in related_products %}
+                <div class="pro">
+                    <a href="{% url 'product_detail' item.product.id %}"><img src="{{ item.image }}" alt=""></a>
+                    <div class="des">
+                        <span>{{ item.product.model }}</span>
+                        <h5>{{ item.product.name }}</h5>
+                        <h4>{{ item.product.price }}</h4>
+                    </div>
+                    <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <script>
+            // script for image change on click
+
+            var MainImg = document.getElementById('MainImg');
+            var smallimg = document.getElementsByClassName('small-img');
+
+            smallimg[0].onclick = function () {
+                MainImg.src = smallimg[0].src;
+            }
+            smallimg[1].onclick = function () {
+                MainImg.src = smallimg[1].src;
+            }
+            smallimg[2].onclick = function () {
+                MainImg.src = smallimg[2].src;
+            }
+            smallimg[3].onclick = function () {
+                MainImg.src = smallimg[3].src;
+            }
+        </script>
+
+    </body>
+{% endblock %}
+</html>

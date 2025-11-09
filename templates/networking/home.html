@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link rel="stylesheet" href="{%static 'css/style_home.css' %}">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h2 class="log">
+                Nexo
+            </h2>
+            <div class="search-bar">
+                <i class="uil uil-search"></i>
+                <input type="search" placeholder="Search for friends, projects and more ">
+            </div>
+            <div class="create">
+                <label class="btn btn-primary" for="create-post">Create</label>
+                <div class="profile-picture">
+                    <a href="{% url 'profile' %}"><img src="{%static 'img/networking/images/social logo.png' %}" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main -->
+
+    <main>
+        <div class="container">
+            <!------------- Left ----------->
+            <div class="left">
+                <a class="profile">
+                    <div class="profile-picture">
+                        <img src="{%static 'img/networking/images/social logo.png' %}" alt="">
+                    </div>
+                    <div class="handle">
+                        <h4>{{ username }}</h4>
+                        <p class="text-muted">Full Stack Developer</p>
+                    </div>
+                </a>
+
+                <!------Sidebar------>
+            {% include 'networking/leftSidebar.html' %}
+                <!------end of sidebar------->
+            </div>
+
+            <!------------- Middle---------->
+            <div class="middle">
+                <div class="stories">
+                    <div class="story">
+                        <div class="profile-picture">
+                            <img src="{%static 'img/networking/images/social logo.png' %}" alt="">
+                        </div>
+                        <p class="name">Your story</p>
+                    </div>
+                    <div class="story">
+                        <div class="profile-picture">
+                            <img src="{%static 'img/networking/images/pr7.avif' %}" alt="">
+                        </div>
+                        <p class="name">Sneha</p>
+                    </div>
+                    <div class="story">
+                        <div class="profile-picture">
+                            <img src="{%static 'img/networking/images/pr10.avif' %}" alt="">
+                        </div>
+                        <p class="name">James Joseph</p>
+                    </div>
+                    <div class="story">
+                        <div class="profile-picture">
+                            <img src="{%static 'img/networking/images/pr3.jpg' %}" alt="">
+                        </div>
+                        <p class="name">Rahul</p>
+                    </div>
+                    <div class="story">
+                        <div class="profile-picture">
+                            <img src="{%static 'img/networking/images/pr2.jpg' %}" alt="">
+                        </div>
+                        <p class="name">Ravi</p>
+                    </div>
+                    <div class="story">
+                        <div class="profile-picture">
+                            <img src="{%static 'img/networking/images/pr8.avif' %}" alt="">
+                        </div>
+                        <p class="name">Arya</p>
+                    </div>
+                </div>
+                <form class="create-post">
+                    <div class="profile-picture">
+                        <img src="{%static 'img/networking/images/social logo.png' %}" >
+                    </div>
+                    <input type="text" placeholder="What's on your mind?" id="create-post">
+                    <input type="submit" value="Post" class="btn btn-primary">
+                </form>
+
+                <!-------Feeds------------->
+                <div class="feeds">
+                    <div class="feed">
+                        <div class="head">
+                            <div class="user">
+                                <div class="profile-picture">
+                                    <img src="{%static 'img/networking/images/pr7.avif' %}">
+                                </div>
+                                <div class="ingo">
+                                    <h3>Sneha</h3>
+                                    <small>Kerala, 15 MINUTES AGO</small>
+                                </div>
+                            </div>
+                            <span class="edit">
+                                <i class="uil uil-ellipsis-h" style="font-size: 24px; color: black;"></i>
+                            </span>
+                        </div>
+                        <div class="photo">
+                            <img src="{%static 'img/networking/images/img1.jpeg' %}">
+                        </div>
+                        <div class="action-buttons">
+                            <div class="interaction-buttons">
+                                <span><i class="uil uil-heart"></i></span>
+                                <span><i class="uil uil-comment-dots"></i></span>
+                                <span><i class="uil uil-share"></i></span>
+                            </div>
+                            <div class="bookmark">
+                                <span><i class="uil uil-bookmark"></i></span>
+                            </div>
+                        </div>
+                        <div class="liked-by">
+                            <span><img src="{%static 'img/networking/images/profile-12.jpg' %}" alt=""></span>
+                            <span><img src="{%static 'img/networking/images/profile-13.jpg' %}" alt=""></span>
+                            <span><img src="{%static 'img/networking/images/profile-14.jpg' %}" alt=""></span>
+                            <p>Liked by <b>Sam</b> and <b>323 others</b></p>
+                        </div>
+                        <div class="caption">
+                            <p><b>Sneha</b>Work hard. #studies <span class="hash-tag">#internships</span></p>
+                        </div>
+                        <div class="comments text-muted">View all 23 comments</div>
+                    </div>
+
+                    <div class="feed">
+                        <div class="head">
+                            <div class="user">
+                                <div class="profile-picture">
+                                    <img src="{%static 'img/networking/images/pr10.avif' %}">
+                                </div>
+                                <div class="ingo">
+                                    <h3>James Joseph</h3>
+                                    <small>Kerala, 15 MINUTES AGO</small>
+                                </div>
+                            </div>
+                            <span class="edit">
+                                <i class="uil uil-ellipsis-h" style="font-size: 24px; color: black;"></i>
+                            </span>
+                        </div>
+                        <div class="photo">
+                            <img src="{%static 'img/networking/images/img6.webp' %}">
+                        </div>
+                        <div class="action-buttons">
+                            <div class="interaction-buttons">
+                                <span><i class="uil uil-heart"></i></span>
+                                <span><i class="uil uil-comment-dots"></i></span>
+                                <span><i class="uil uil-share"></i></span>
+                            </div>
+                            <div class="bookmark">
+                                <span><i class="uil uil-bookmark"></i></span>
+                            </div>
+                        </div>
+                        <div class="liked-by">
+                            <span><img src="{%static 'img/networking/images/profile-12.jpg' %}" alt=""></span>
+                            <span><img src="{%static 'img/networking/images/profile-13.jpg' %}" alt=""></span>
+                            <span><img src="{%static 'img/networking/images/profile-14.jpg' %}" alt=""></span>
+                            <p>Liked by <b>Sam</b> and <b>323 others</b></p>
+                        </div>
+                        <div class="caption">
+                            <p><b>James </b>Work hard. #studies <span class="hash-tag">#internships</span></p>
+                        </div>
+                        <div class="comments text-muted">View all 23 comments</div>
+                    </div>
+
+                    <div class="feed">
+                        <div class="head">
+                            <div class="user">
+                                <div class="profile-picture">
+                                    <img src="{%static 'img/networking/images/pr3.jpeg' %}">
+                                </div>
+                                <div class="ingo">
+                                    <h3>Rahul</h3>
+                                    <small>Kerala, 15 MINUTES AGO</small>
+                                </div>
+                            </div>
+                            <span class="edit">
+                                <i class="uil uil-ellipsis-h" style="font-size: 24px; color: black;"></i>
+                            </span>
+                        </div>
+                        <div class="photo">
+                            <img src="{%static 'img/networking/images/img3.jpg' %}">
+                        </div>
+                        <div class="action-buttons">
+                            <div class="interaction-buttons">
+                                <span><i class="uil uil-heart"></i></span>
+                                <span><i class="uil uil-comment-dots"></i></span>
+                                <span><i class="uil uil-share"></i></span>
+                            </div>
+                            <div class="bookmark">
+                                <span><i class="uil uil-bookmark"></i></span>
+                            </div>
+                        </div>
+                        <div class="liked-by">
+                            <span><img src="{%static 'img/networking/images/profile-12.jpg' %}" alt=""></span>
+                            <span><img src="{%static 'img/networking/images/profile-13.jpg' %}" alt=""></span>
+                            <span><img src="{%static 'img/networking/images/profile-14.jpg' %}" alt=""></span>
+                            <p>Liked by <b>Sam</b> and <b>323 others</b></p>
+                        </div>
+                        <div class="caption">
+                            <p><b>Rahul </b>Work hard. #studies <span class="hash-tag">#internships</span></p>
+                        </div>
+                        <div class="comments text-muted">View all 23 comments</div>
+                    </div>
+
+                    <div class="feed">
+                        <div class="head">
+                            <div class="user">
+                                <div class="profile-picture">
+                                    <img src="{%static 'img/networking/images/pr2.jpg' %}">
+                                </div>
+                                <div class="ingo">
+                                    <h3>Ravi</h3>
+                                    <small>Kerala, 15 MINUTES AGO</small>
+                                </div>
+                            </div>
+                            <span class="edit">
+                                <i class="uil uil-ellipsis-h" style="font-size: 24px; color: black;"></i>
+                            </span>
+                        </div>
+                        <div class="photo">
+                            <img src="{%static 'img/networking/images/img4.jpeg' %}">
+                        </div>
+                        <div class="action-buttons">
+                            <div class="interaction-buttons">
+                                <span><i class="uil uil-heart"></i></span>
+                                <span><i class="uil uil-comment-dots"></i></span>
+                                <span><i class="uil uil-share"></i></span>
+                            </div>
+                            <div class="bookmark">
+                                <span><i class="uil uil-bookmark"></i></span>
+                            </div>
+                        </div>
+                        <div class="liked-by">
+                            <span><img src="{%static 'img/networking/images/profile-12.jpg' %}" alt=""></span>
+                            <span><img src="{%static 'img/networking/images/profile-13.jpg' %}" alt=""></span>
+                            <span><img src="{%static 'img/networking/images/profile-14.jpg' %}" alt=""></span>
+                            <p>Liked by <b>Sam</b> and <b>323 others</b></p>
+                        </div>
+                        <div class="caption">
+                            <p><b>Ravi </b>Work hard. #studies <span class="hash-tag">#internships</span></p>
+                        </div>
+                        <div class="comments text-muted">View all 23 comments</div>
+                    </div>
+
+                    <div class="feed">
+                        <div class="head">
+                            <div class="user">
+                                <div class="profile-picture">
+                                    <img src="{%static 'img/networking/images/pr8.avif' %}">
+                                </div>
+                                <div class="ingo">
+                                    <h3>Arya</h3>
+                                    <small>Kerala, 15 MINUTES AGO</small>
+                                </div>
+                            </div>
+                            <span class="edit">
+                                <i class="uil uil-ellipsis-h" style="font-size: 24px; color: black;"></i>
+                            </span>
+                        </div>
+                        <div class="photo">
+                            <img src="{%static 'img/networking/images/img5.jpeg' %}">
+                        </div>
+                        <div class="action-buttons">
+                            <div class="interaction-buttons">
+                                <span><i class="uil uil-heart"></i></span>
+                                <span><i class="uil uil-comment-dots"></i></span>
+                                <span><i class="uil uil-share"></i></span>
+                            </div>
+                            <div class="bookmark">
+                                <span><i class="uil uil-bookmark"></i></span>
+                            </div>
+                        </div>
+                        <div class="liked-by">
+                            <span><img src="{%static 'img/networking/images/profile-12.jpg' %}" alt=""></span>
+                            <span><img src="{%static 'img/networking/images/profile-13.jpg' %}" alt=""></span>
+                            <span><img src="{%static 'img/networking/images/profile-14.jpg' %}" alt=""></span>
+                            <p>Liked by <b>Sam</b> and <b>323 others</b></p>
+                        </div>
+                        <div class="caption">
+                            <p><b>Arya </b>Work hard. #studies <span class="hash-tag">#internships</span></p>
+                        </div>
+                        <div class="comments text-muted">View all 23 comments</div>
+                    </div>
+
+                    <div class="feed">
+                        <div class="head">
+                            <div class="user">
+                                <div class="profile-picture">
+                                    <img src="{%static 'img/networking/images/pr9.avif' %}">
+                                </div>
+                                <div class="ingo">
+                                    <h3>Rohan</h3>
+                                    <small>Kerala, 15 MINUTES AGO</small>
+                                </div>
+                            </div>
+                            <span class="edit">
+                                <i class="uil uil-ellipsis-h" style="font-size: 24px; color: black;"></i>
+                            </span>
+                        </div>
+                        <div class="photo">
+                            <img src="{%static 'img/networking/images/img3.jpg' %}">
+                        </div>
+                        <div class="action-buttons">
+                            <div class="interaction-buttons">
+                                <span><i class="uil uil-heart"></i></span>
+                                <span><i class="uil uil-comment-dots"></i></span>
+                                <span><i class="uil uil-share"></i></span>
+                            </div>
+                            <div class="bookmark">
+                                <span><i class="uil uil-bookmark"></i></span>
+                            </div>
+                        </div>
+                        <div class="liked-by">
+                            <span><img src="{%static 'img/networking/images/profile-12.jpg' %}" alt=""></span>
+                            <span><img src="{%static 'img/networking/images/profile-13.jpg' %}" alt=""></span>
+                            <span><img src="{%static 'img/networking/images/profile-14.jpg' %}" alt=""></span>
+                            <p>Liked by <b>Sam</b> and <b>323 others</b></p>
+                        </div>
+                        <div class="caption">
+                            <p><b>Rohan </b>Work hard. #studies <span class="hash-tag">#internships</span></p>
+                        </div>
+                        <div class="comments text-muted">View all 23 comments</div>
+                    </div>
+
+                    <div class="feed">
+                        <div class="head">
+                            <div class="user">
+                                <div class="profile-picture">
+                                    <img src="{%static 'img/networking/images/pr11.avif' %}">
+                                </div>
+                                <div class="ingo">
+                                    <h3>Sanvi</h3>
+                                    <small>Kerala, 15 MINUTES AGO</small>
+                                </div>
+                            </div>
+                            <span class="edit">
+                                <i class="uil uil-ellipsis-h" style="font-size: 24px; color: black;"></i>
+                            </span>
+                        </div>
+                        <div class="photo">
+                            <img src="{%static 'img/networking/images/img7.png' %}">
+                        </div>
+                        <div class="action-buttons">
+                            <div class="interaction-buttons">
+                                <span><i class="uil uil-heart"></i></span>
+                                <span><i class="uil uil-comment-dots"></i></span>
+                                <span><i class="uil uil-share"></i></span>
+                            </div>
+                            <div class="bookmark">
+                                <span><i class="uil uil-bookmark"></i></span>
+                            </div>
+                        </div>
+                        <div class="liked-by">
+                            <span><img src="{%static 'img/networking/images/profile-12.jpg' %}" alt=""></span>
+                            <span><img src="{%static 'img/networking/images/profile-13.jpg' %}" alt=""></span>
+                            <span><img src="{%static 'img/networking/images/profile-14.jpg' %}" alt=""></span>
+                            <p>Liked by <b>Sam</b> and <b>323 others</b></p>
+                        </div>
+                        <div class="caption">
+                            <p><b>Sanvi </b>Work hard. #studies <span class="hash-tag">#internships</span></p>
+                        </div>
+                        <div class="comments text-muted">View all 23 comments</div>
+                    </div>
+
+                    <div class="feed">
+                        <div class="head">
+                            <div class="user">
+                                <div class="profile-picture">
+                                    <img src="{%static 'img/networking/images/pr12.avif' %}">
+                                </div>
+                                <div class="ingo">
+                                    <h3>Emilie</h3>
+                                    <small>Kerala, 15 MINUTES AGO</small>
+                                </div>
+                            </div>
+                            <span class="edit">
+                                <i class="uil uil-ellipsis-h" style="font-size: 24px; color: black;"></i>
+                            </span>
+                        </div>
+                        <div class="photo">
+                            <img src="{%static 'img/networking/images/img7.png' %}">
+                        </div>
+                        <div class="action-buttons">
+                            <div class="interaction-buttons">
+                                <span><i class="uil uil-heart"></i></span>
+                                <span><i class="uil uil-comment-dots"></i></span>
+                                <span><i class="uil uil-share"></i></span>
+                            </div>
+                            <div class="bookmark">
+                                <span><i class="uil uil-bookmark"></i></span>
+                            </div>
+                        </div>
+                        <div class="liked-by">
+                            <span><img src="{%static 'img/networking/images/profile-12.jpg' %}" alt=""></span>
+                            <span><img src="{%static 'img/networking/images/profile-13.jpg' %}" alt=""></span>
+                            <span><img src="{%static 'img/networking/images/profile-14.jpg' %}" alt=""></span>
+                            <p>Liked by <b>Sam</b> and <b>323 others</b></p>
+                        </div>
+                        <div class="caption">
+                            <p><b>Emilie </b>Work hard. #studies <span class="hash-tag">#internships</span></p>
+                        </div>
+                        <div class="comments text-muted">View all 23 comments</div>
+                    </div>
+
+                    <div class="feed">
+                        <div class="head">
+                            <div class="user">
+                                <div class="profile-picture">
+                                    <img src="{%static 'img/networking/images/pr13.avif' %}">
+                                </div>
+                                <div class="ingo">
+                                    <h3>Finn</h3>
+                                    <small>Kerala, 15 MINUTES AGO</small>
+                                </div>
+                            </div>
+                            <span class="edit">
+                                <i class="uil uil-ellipsis-h" style="font-size: 24px; color: black;"></i>
+                            </span>
+                        </div>
+                        <div class="photo">
+                            <img src="{%static 'img/networking/images/img8.webp' %}">
+                        </div>
+                        <div class="action-buttons">
+                            <div class="interaction-buttons">
+                                <span><i class="uil uil-heart"></i></span>
+                                <span><i class="uil uil-comment-dots"></i></span>
+                                <span><i class="uil uil-share"></i></span>
+                            </div>
+                            <div class="bookmark">
+                                <span><i class="uil uil-bookmark"></i></span>
+                            </div>
+                        </div>
+                        <div class="liked-by">
+                            <span><img src="{%static 'img/networking/images/profile-12.jpg' %}" alt=""></span>
+                            <span><img src="{%static 'img/networking/images/profile-13.jpg' %}" alt=""></span>
+                            <span><img src="{%static 'img/networking/images/profile-14.jpg' %}" alt=""></span>
+                            <p>Liked by <b>Sam</b> and <b>323 others</b></p>
+                        </div>
+                        <div class="caption">
+                            <p><b>Finn </b>Work hard. #studies <span class="hash-tag">#internships</span></p>
+                        </div>
+                        <div class="comments text-muted">View all 23 comments</div>
+                    </div>
+
+                    <div class="feed"> 
+                        <div class="head">
+                            <div class="user">
+                                <div class="profile-picture">
+                                    <img src="{%static 'img/networking/images/pr14.avif' %}">
+                                </div>
+                                <div class="ingo">
+                                    <h3>David</h3>
+                                    <small>Kerala, 15 MINUTES AGO</small>
+                                </div>
+                            </div>
+                            <span class="edit">
+                                <i class="uil uil-ellipsis-h" style="font-size: 24px; color: black;"></i>
+                            </span>
+                        </div>
+                        <div class="photo">
+                            <img src="{%static 'img/networking/images/img9.webp' %}">
+                        </div>
+                        <div class="action-buttons">
+                            <div class="interaction-buttons">
+                                <span><i class="uil uil-heart"></i></span>
+                                <span><i class="uil uil-comment-dots"></i></span>
+                                <span><i class="uil uil-share"></i></span>
+                            </div>
+                            <div class="bookmark">
+                                <span><i class="uil uil-bookmark"></i></span>
+                            </div>
+                        </div>
+                        <div class="liked-by">
+                            <span><img src="{%static 'img/networking/images/profile-12.jpg' %}" alt=""></span>
+                            <span><img src="{%static 'img/networking/images/profile-13.jpg' %}" alt=""></span>
+                            <span><img src="{%static 'img/networking/images/profile-14.jpg' %}" alt=""></span>
+                            <p>Liked by <b>Sam</b> and <b>323 others</b></p>
+                        </div>
+                        <div class="caption">
+                            <p><b>David </b>Work hard. #studies <span class="hash-tag">#internships</span></p>
+                        </div>
+                        <div class="comments text-muted">View all 23 comments</div>
+                    </div>
+                </div>                
+            </div>
+            <!------------- Right----------->
+        {% include 'networking/rightSidebar.html' %}
+        </div>
+    </main>
+
+    <!------------------------------theme customization--------------------->
+
+    {% include 'networking/theme.html' %}
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+{% include 'networking/baselayout_chat.html' %}
+{% load static %}
+{% load chat_filters %}
+{% load tz %}
+<body>
+        <!-- Main -->
+
+        <main>
+            <div class="container">
+                <!------------- Left ----------->
+            {% include 'networking/chatLeftBar.html' %}
+            <!------right---->
+
+            <div class="chat-container" id="chatContainer">
+                <!-- Chat Header -->
+                <div class="chat-header">
+                    {% if profile_pic %}
+                        <img src="{{ profile_pic.url }}" id="chatProfilePic" alt="">
+                    {% else %}
+                        <img src="{% static 'img/chat/images/user.jpeg' %}" id="chatProfilePic" alt="">
+                    {% endif %}
+                    <div>
+                        <h3 id="chatUserName">{{ group_name }}</h3>
+                        <h6 id="showGroupBox" style="color: grey; margin-top: 2px; cursor: pointer;">
+                            Tap here for group info
+                        </h6>                        
+                    </div>
+                    <div class="countdown-container">
+                        <div class="countdown-bar-wrapper">
+                            <div class="countdown-bar" id="countdownProgressBar"></div>
+                        </div>
+                        <span id="countdown" title="Expires at {{ conversation.expiry_at|date:'M d, Y h:i A' }}"></span>
+                    </div>
+                </div>   
+
+                <div id="groupBox">
+                    <div class="group-header">
+                        {% if profile_pic %}
+                            <img src="{{ profile_pic.url }}" alt="Group" class="group-image">
+                        {% else %}
+                            <img src="{% static 'img/chat/images/user.jpeg' %}" alt="Group" class="group-image">
+                        {% endif %}
+                        <div class="group-info">
+                            <h3>{{ group_name }}</h3>
+                            <span class="group-members-count">{{ member_count }} Members</span>
+                        </div>
+                    </div>
+                    <div class="group-members">
+                        <!-- Example Members -->
+                        <div class="member">
+                            <img src="{% static 'img/chat/images/user.jpeg' %}" alt="Member">
+                            <span>{{ group_creator }}</span>
+                            <span class="admin-badge">Admin</span>
+                        </div>
+                        {% for member in members %}
+                        <div class="member">
+                            <img src="{% static 'img/chat/images/user.jpeg' %}" alt="Member">
+                            <span>{{ member }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                
+                <!-- Chat Messages -->
+
+                <div class="chat-messages" id="chatMessages">
+                    {% for msg in messages %}
+                        {% with msg.timestamp|localtime as local_timestamp %}
+                        {% with now|localtime as current_time %}
+                        {% with local_timestamp|date:"Y-m-d" as msg_date %}
+                        {% with current_time|date:"Y-m-d" as today %}
+                        {% with current_time|date:"Y-m-d"|add:"-1 day" as yesterday %}
+                            <div class="message {% if msg.sender == request.user %}sent-message{% else %}received-message{% endif %}">
+                                {% if msg.sender != request.user %}
+                                    <span class="sender-name">{{ msg.sender.username }}</span>  {# Display sender's name for received messages #}
+                                {% endif %}
+                                <span class="message-text">{{ msg.content }}</span>
+                                <span class="message-time">
+                                    {% if local_timestamp|date:"Y-m-d" == today %}
+                                        {{ local_timestamp|date:"h:i A" }}  {# Show only time for today's messages #}
+                                    {% elif local_timestamp|is_yesterday %}
+                                        Yesterday {{ local_timestamp|date:"h:i A" }} {# Show 'Yesterday' for messages from the previous day #}
+                                    {% else %}
+                                        {{ local_timestamp|date:"M d, h:i A" }} {# Show full date + time for older messages #}
+                                    {% endif %}
+                                </span>                                  
+                            </div>
+                        {% endwith %}
+                        {% endwith %}
+                        {% endwith %}
+                        {% endwith %}
+                        {% endwith %}
+                    {% endfor %}
+                </div>
+                
+                               
+                <!-- Chat Input -->
+                <div class="chat-input">
+                    <input type="text" id="messageInput" placeholder="Type a message..." onkeypress="checkEnter(event)">
+                    <button id="sendMessage" onclick="sendMessage()">➤</button>
+                </div>
+            </div>    
+
+    {% include 'networking/groupForm.html' %}
+              
+            </div>
+        </main>
+    {% include 'networking/theme.html' %}
+
+<!-- Hidden elements to store Django variables -->
+<div id="userId" data-userid="{{ request.user.id }}"></div>
+<div id="groupId" data-groupid="{{ conversation.id }}"></div>
+    <script src="{% static 'js/groupChat.js' %}"></script>
+    
+    <script>
+        const expiryTimeRaw = "{{ conversation.expiry_at|default_if_none:''|timezone:'UTC'|date:'c' }}";
+        const countdownElement = document.getElementById("countdown");
+        const messageInput = document.getElementById("messageInput");
+        const sendButton = document.getElementById("sendMessage");
+        const progressBar = document.getElementById("countdownProgressBar");
+        const progressBarWrapper = document.querySelector(".countdown-bar-wrapper");
+    
+        const lockMessageInput = () => {
+            messageInput.disabled = true;
+            sendButton.disabled = true;
+            messageInput.placeholder = "Group Expired!";
+        };
+    
+        const unlockMessageInput = () => {
+            messageInput.disabled = false;
+            sendButton.disabled = false;
+            messageInput.placeholder = "Type a message...";
+        };
+    
+        if (expiryTimeRaw) {
+            const expiryTime = new Date(expiryTimeRaw).getTime();
+            const totalDuration = expiryTime - new Date("{{ conversation.start_time|timezone:'UTC'|date:'c' }}").getTime();
+    
+            const updateCountdown = () => {
+                const now = new Date().getTime();
+                const distance = expiryTime - now;
+    
+                if (distance <= 0) {
+                    countdownElement.innerHTML = "⛔ Group Expired!";
+                    countdownElement.style.color = "red";
+                    lockMessageInput();
+                    progressBar.style.width = "100%";
+                    progressBar.style.backgroundColor = "red";
+                    return;
+                }
+    
+                const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((distance / (1000 * 60)) % 60);
+                const seconds = Math.floor((distance / 1000) % 60);
+    
+                countdownElement.innerHTML =
+                    `${hours.toString().padStart(2, '0')}h ` +
+                    `${minutes.toString().padStart(2, '0')}m ` +
+                    `${seconds.toString().padStart(2, '0')}s`;
+    
+                countdownElement.style.color = distance <= 60000 ? "red" : "grey";
+    
+                const percentComplete = ((totalDuration - distance) / totalDuration) * 100;
+                progressBar.style.width = `${percentComplete}%`;
+    
+                if (distance <= totalDuration * 0.25) {
+                    progressBar.style.backgroundColor = "red";
+                }
+            };
+    
+            unlockMessageInput();
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+        } else {
+            countdownElement.style.display = "none";
+            if (progressBarWrapper) {
+                progressBarWrapper.style.display = "none";
+            }
+            unlockMessageInput();
+        }
+    </script>
+    
+    <!-- ✅ INSERT THIS RIGHT AFTER THE ABOVE SCRIPT -->
+    {% if conversation.extension_pending %}
+        {% if request.user.id == conversation.creator.id %}
+            <script>
+                const decision = confirm("Your group has expired. Do you want to extend it?");
+                if (decision) {
+                    const new_type = prompt("Enter new timespan type (hours, days, months):", "hours");
+                    const new_value = prompt("Enter new duration (e.g., 2 for 2 hours):", "1");
+    
+                    fetch("{% url 'handle_extension_decision' conversation.id %}", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                            "X-CSRFToken": "{{ csrf_token }}"
+                        },
+                        body: `decision=extend&new_type=${new_type}&new_value=${new_value}`
+                    }).then(response => location.reload());
+                } else {
+                    fetch("{% url 'handle_extension_decision' conversation.id %}", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                            "X-CSRFToken": "{{ csrf_token }}"
+                        },
+                        body: `decision=decline`
+                    }).then(response => location.reload());
+                }
+            </script>
+        {% else %}
+            <script>
+                lockMessageInput();
+                document.getElementById("countdown").innerHTML = "Waiting for admin to extend the group...";
+            </script>
+        {% endif %}
+    {% endif %}
+    
+        {% if conversation.extension_accepted %}
+            <script>
+                unlockMessageInput();
+                document.getElementById("countdown").innerHTML = "Group has been extended!";
+            </script>
+        {% endif %}
+
+        {% if conversation.extension_declined %}
+            <script>
+                lockMessageInput();
+                document.getElementById("countdown").innerHTML = "Group extension declined!";
+            </script>
+        {% endif %}   
+    
+    
+</body>
+</html>

@@ -1,0 +1,108 @@
+{% extends 'baselayout.html' %}
+{% load static %}
+{% block content %}
+    <body>
+        <section id="hero">
+            <h4>Trade-in-offer</h4>
+            <h2>Super value deals</h2>
+            <h1>On all products</h1>
+            <p>Affordable resources for brighter future...</p>
+        </section>
+
+        <section id="feature" class="section-p1">
+            <div class="fe-box">
+                <img src="{% static 'img/features/f1.png' %}" alt="">
+                <h6>Free Shipping</h6>
+            </div>
+            <div class="fe-box">
+                <img src="{% static 'img/features/f2.png' %}" alt="">
+                <h6>Online order</h6>
+            </div>
+            <div class="fe-box">
+                <img src="{% static 'img/features/f3.png' %}" alt="">
+                <h6>Save money</h6>
+            </div>
+            <div class="fe-box">
+                <img src="{% static 'img/features/f4.png' %}" alt="">
+                <h6>Promotions</h6>
+            </div>
+            <div class="fe-box">
+                <img src="{% static 'img/features/f5.png' %}" alt="">
+                <h6>Happy sell</h6>
+            </div>
+            <div class="fe-box">
+                <img src="{% static 'img/features/f6.png' %}" alt="">
+                <h6>F24/7 Support</h6>
+            </div>
+            
+        </section>
+
+        <section id="product1" class="section-p1">
+            <h2>Featured Product</h2>
+            <p>From books to gadgets, all in one place.</p>
+            <div class="pro-container">
+                {% for item in products_with_images_priority %}
+                    <div class="pro" data-model="{{ item.product.model }}">
+                        {% if item.image %}
+                           <a href="{% url 'product_detail' item.product.id  %}"><img src="{{ item.image }}" alt="{{ item.product.name }}"></a>
+                        {% else %}
+                            <img src="{% static 'img/products/placeholder.jpg' %}" alt="No image available">
+                        {% endif %}
+                        <div class="des">
+                            <span>{{ item.product.model }}</span>
+                            <h5>{{ item.product.name }}</h5>
+                            <h4>₹ {{ item.product.price }}</h4>
+                        </div>
+                        <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section id="banner" class="section-m1">
+            <h4>Help Assured</h4>
+            <h2>Up to <span>30% Off</span> for Accessories</p>
+            <button>Explore More</button>
+        </section>
+
+        <section id="product1" class="section-p1">
+            <h2>New Arrivals</h2>
+            <p>New Gear, New Semester, New You!</p>
+            <div class="pro-container">
+                {% for item in products_with_images_id %}
+                    <div class="pro" data-model="{{ item.product.model }}">
+                        {% if item.image %}
+                        <a href="{% url 'product_detail' item.product.id %}"><img src="{{ item.image }}" alt="{{ item.product.name }}"></a>
+                        {% else %}
+                            <img src="{% static 'img/products/placeholder.jpg' %}" alt="No image available">
+                        {% endif %}
+                        <div class="des">
+                            <span>{{ item.product.model }}</span>
+                            <h5>{{ item.product.name }}</h5>
+                            <h4>₹{{ item.product.price }}</h4>
+                        </div>
+                        <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section id="sm-banner" class="section-p1">
+            <div class="banner-box">
+                <h4>crazy deals</h4>
+                <h2>Get upto 30% off</h2>
+                <span>Best deals at Nexo</span>
+                <button class="white">Learn more</button>
+            </div>
+            <div class="banner-box banner-box2">
+                <h4>crazy deals</h4>
+                <h2>Get the best offers</h2>
+                <span>Only at Nexo</span>
+                <button class="white">Learn more</button>
+                
+            </div>
+        </section>
+        <script src="{% static 'js/script.js' %}"></script>
+    </body>
+    {% endblock %}
+</html>

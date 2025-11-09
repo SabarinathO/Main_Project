@@ -1,0 +1,70 @@
+{% extends 'baselayout.html' %}
+{% load static %}
+{% block content %}
+<body>
+    <section id="page-header3">
+        <h2>#Become a Seller</h2>
+        <p>Sell Online with Nexo</p>
+        <a href="{% url 'sellHistory' %}"><button class="sell-History">Sell History</button></a>
+    </section>
+
+    <section id="seller-form" class="section-p1">
+        <div class="form-container">
+            <form id="sellForm" method="post" action="{% url 'sell' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+            
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+            
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" minlength="10" required>
+            
+                <label for="product">Product:</label>
+                <select id="product" name="productModel" required>
+                    <option value="" disabled selected>Select a product</option>
+                    <option value="Calculator">Calculator</option>
+                    <option value="Lab Coats">Lab Coat</option>
+                    <option value="Book">Books</option>
+                    <option value="Other">Other</option>
+                </select>
+            
+                <div id="otherProductDiv" style="display: none;">
+                    <label for="otherProduct">Specify Product Model:</label>
+                    <input type="text" id="otherProduct" name="otherProduct">
+                </div>
+            
+                <label for="Product_name">Product Name:</label>
+                <input type="text" id="Product_name" name="productName" required>
+            
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" required>
+            
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+            
+                <label for="primaryImage">Upload Primary Image:</label>
+                <input type="file" id="primaryImage" name="primaryImage" accept="image/*" required>
+            
+                <label for="additionalImages">Upload Additional Images:</label>
+                <input type="file" id="additionalImages" name="additionalImages" accept="image/*" multiple>
+            
+                <button type="button" id="previewBtn" class="styled-btn">Preview</button>
+            
+                <section id="product-details" class="section-p1" style="display: none;">
+                    <div id="productDisplay" class="product-box" style="border: 1px solid #ccc; padding: 20px; margin: 20px auto; max-width: 600px;">
+                        <!-- Preview details appear here -->
+                    </div>
+            
+                    <!-- Confirm & Submit button inside the form -->
+                    <button type="submit" id="submitBtn" class="styled-btn" style="display: none; width: 100%;">Confirm & Submit</button>
+                </section>
+            </form>
+        </div>
+    </section>            
+
+    <script src="{% static 'js/script_sell.js' %}"></script>
+</body>
+{% endblock %}

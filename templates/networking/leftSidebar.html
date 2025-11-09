@@ -1,0 +1,68 @@
+{% load static %}
+<div class="sidebar">
+    <a class="menu-item active">
+        <span><i class="uil uil-home"></i></span><h3>Home</h3>
+    </a>
+    <a class="menu-item" href="{% url 'home' %}">
+        <span><i class="uil uil-shopping-cart"></i></span>
+        <h3>E-commerce</h3>
+    </a>                    
+    <a class="menu-item" id="notifications">
+        <span><i class="uil uil-bell"><small class="notification-count">9+</small></i></span><h3>Notifications</h3>
+        <!-------notification popup-------->
+        <div class="notification-popup">
+            <div>
+                <div class="profile-picture">
+                    <img src="{%static 'img/networking/images/pr16.avif' %}" alt="">
+                </div>
+                <div class="notification-body">
+                    <b>Amritha</b> accepted your friend request
+                    <small class="text-muted">2 hours ago</small>
+                </div>
+            </div>
+            <div>
+                <div class="profile-picture">
+                    <img src="{%static 'img/networking/images/pr7.avif' %}" alt="">
+                </div>
+                <div class="notification-body">
+                    <b>Sneha</b> commented on your post
+                    <small class="text-muted">2 hours ago</small>
+                </div>
+            </div>
+            <div>
+                <div class="profile-picture">
+                    <img src="{%static 'img/networking/images/pr17.avif' %}" alt="">
+                </div>
+                <div class="notification-body">
+                    <b>Ajith</b> accepted your friend request
+                    <small class="text-muted">2 hours ago</small>
+                </div>
+            </div>
+            <div>
+                <div class="profile-picture">
+                    <img src="{%static 'img/networking/images/profile-5.jpg' %}" alt="">
+                </div>
+                <div class="notification-body">
+                    <b>Shreya</b> liked your post
+                    <small class="text-muted">2 hours ago</small>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a class="menu-item" id="messages-notifications" href="{% url 'chatInterface' %}">   
+        <span><i class="uil uil-envelope-edit"><small class="notification-count">9+</small></i></span><h3>Messages</h3>
+    </a>
+    <a class="menu-item">
+        <span><i class="uil uil-bookmark"></i></span><h3>Bookmarks</h3>
+    </a>
+    <a class="menu-item">
+        <span><i class="uil uil-analytics"></i></span><h3>Analytics</h3>
+    </a>
+    <a class="menu-item" id="theme">    
+        <span><i class="uil uil-palette"></i></span><h3>Theme</h3>
+    </a>
+    <a class="menu-item">
+        <span><i class="uil uil-setting"></i></span><h3>Settings</h3>
+    </a>
+    <label class="btn btn-primary" for="create-post">Create Post</label>
+</div>

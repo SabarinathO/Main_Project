@@ -1,0 +1,19 @@
+{% extends 'baselayout.html' %}
+{% load static %}
+{% block content %}
+<body>
+    <section id="page-header4">
+        <h2>#Checkout</h2>
+        <p>Choose your payment method</p>
+    </section>
+<form method="post" action="{% url 'payment' %}" class="payment-container">
+    {% csrf_token %}
+    <input type="hidden" name="totalamount" value="{{ total_price }}">
+    <input type="hidden" name="order_id" value="{{ order_id }}">
+    <button class="paymentbutton paymentbutton-green" value="cash_on_delivary" name="payment_method">Cash ON Delivery</button>
+    <h1>OR</h1>
+    <button class="paymentbutton paymentbutton-blue" value="stripe" name="payment_method">Pay With Stripe</button>
+    <br>
+</form>
+</body>
+{% endblock %}

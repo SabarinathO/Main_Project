@@ -1,0 +1,275 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXO</title>
+    <link rel="shortcut icon" href="https://assets-global.website-files.com/64a2ab71942e1d57feb6fe39/6528221f95333ff155d01ad2_fav.gif" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <link rel="stylesheet" href="{% static 'css/style_about.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <nav>
+        <h1>NEXO </h1>
+        <div class="nav-part2">
+            <div class="nav-elem">
+                <h4>Student Journeys</h4>
+                <h5><span>Success Stories</span></h5>
+                <h5><span>Student Interactions</span></h5>
+                <h5><span>Campus Event Highlights</span></h5>
+            </div>
+            
+            <div class="nav-elem">
+                <h4>Areas of experties</h4>
+                <h5><span>AI & Chat Systems</span></h5>
+                <h5><span>Real-Time Communication</span></h5>
+                <h5><span>E-commerce</span></h5>
+                <h5><span>Secure Encryption</span></h5>
+            </div>
+            <div class="nav-elem">
+                <h4>Core Features</h4>
+                <h5><span>AI-Driven Chat System</span></h5>
+                <h5><span>Secure Temporary Group Chats</span></h5>
+                <h5><span>Content Posting</span></h5>
+                <h5><span>Marketplace for Students</span></h5>
+            </div>
+            <div class="nav-elem1">
+                <i class="fa-solid fa-user"></i>
+                <h4><a style="text-decoration: none;" href="{% url 'home' %}">Guest User</a></h4>
+            </div>
+            <h4><a style="text-decoration: none;" href="{% url 'main' %}">Networking</a></h4>
+        </div>
+        <button><a style="text-decoration: none;" href="{% url 'signin' %}">Login / Sign up</a></button>
+
+    </nav>
+    <div id="main">
+        <div id="page1">
+            <h1>Revolutionizing Student <br>Interactions</h1>
+            <p> Support innovative solutions for students, fostering communication, 
+                <br>collaboration, and engagement through secure and intuitive platforms. </p>
+                <div id="moving-div">
+                    <div id="blur-left"></div>
+                    <div class="move">
+                        <span>Profiles</span>
+                        <span>Real-Time Chat</span>
+                        <span>Job Opportunities</span>
+                        <span>Marketplace</span>
+                        <span>University Email Verification</span>
+                        <span>Temporary Group Chats</span>
+                    </div>
+                    <div class="move">
+                        <span>Profiles</span>
+                        <span>Real-Time Chat</span>
+                        <span>Job Opportunities</span>
+                        <span>Marketplace</span>
+                        <span>University Email Verification</span>
+                        <span>Temporary Group Chats</span>
+                    </div>
+                    <div id="blur-right"></div>
+                </div>
+                
+                
+        </div>
+        <div id="page2">
+            <div id="page2-left">
+                <p>Exclusive insights into <br>Student Networking, Career Growth, and Collaboration</p>
+                <h5>As a platform built for students, we aim to revolutionize the way they connect, share, and grow. From real-time chats to sharing placement details, organizing group discussions, and 
+                    accessing verified opportunities, we empower students to build a better future together.</h5>
+            </div>
+            <div id="page2-right">
+                <div class="right-elem" id="right-elem1">
+                    <h2>Building Stronger Student Networks <br> for Career Growth</h2>
+                    <img src="https://assets-global.website-files.com/64a5e6675a4159253d0ee3e0/65c5011d306a52274ebea027_cover.webp"
+                        alt="">
+                </div>
+                <div class="right-elem">
+                    <h2>Real-Time Chat:Empowering Seamless Collaboration <br></h2>
+                    <img src="https://assets-global.website-files.com/64a5e6675a4159253d0ee3e0/65c5011d306a52274ebea027_cover.webp"
+                        alt="">
+                </div>
+                <div class="right-elem">
+                    <h2>Marketplace for Students<br>Buy, Sell, and Exchange Items</h2>
+                    <img src="https://assets-global.website-files.com/64a5e6675a4159253d0ee3e0/65c5011d306a52274ebea027_cover.webp"
+                        alt="">
+                </div>
+                <div class="right-elem">
+                    <h2>Verified Student Communities <br>through Email Authentication</h2>
+                    <img src="https://assets-global.website-files.com/64a5e6675a4159253d0ee3e0/65c5011d306a52274ebea027_cover.webp"
+                        alt="">
+                </div>
+            </div>
+
+        </div>
+        <div id="page3">
+            <video src="{% static 'vedio/change.mp4' %}"></video>
+            <div class="page3-center">
+                <div class="icon">
+                    <i class="ri-play-fill"></i>
+                </div>
+                <h5>Watch Showreel</h5>
+            </div>
+        </div>
+        <div id="page4">
+            <div class="section">
+                <div class="sec-left">
+                    <h2>Profiles and Networking</h2>
+                    <p>Empower students to create personalized profiles,
+                        connect with peers, and build meaningful professional networks for collaboration and growth.</p>
+                </div>
+                <div class="sec-right">
+                    <img src="{% static 'img/about/networking.png' %}"
+                        alt="">
+                    <video muted src="{% static 'vedio/networking.mp4' %}"></video>
+                </div>
+            </div>
+            <div class="section">
+                <div class="sec-left">
+                    <h2>Student Marketplace</h2>
+                    <p>Buy, sell, or exchange textbooks, notes, and stationery items in a dedicated and clutter-free marketplace.</p>
+                </div>
+                <div class="sec-right">
+                    <img src="{% static 'img/about/market.png' %}"
+                        alt="">
+                    <video muted src="{% static 'vedio/market.mp4' %}"></video>
+                </div>
+            </div>
+        </div>                      
+        <div id="page6">
+            <h1>Empowering Student Collaboration and Growth</h1>
+            <div id="page6-content">
+                <div id="right-6">
+                    <p>We don’t just build a platform—we create opportunities for students to connect, collaborate, and advance their careers. Every feature is designed to foster meaningful relationships, 
+                        share knowledge, and simplify networking in a clean and organized environment.</p>
+                    </p>
+
+                </div>
+            </div>
+            <div id="page6-bottom">
+                <div id="btm6-part1" class="btm6-parts"></div>
+                <div id="btm6-part2" class="btm6-parts">
+                    <h5>Platform Strategy</h5>
+                    <h4><span>1</span>Understanding Student Needs</h4>
+                    <h4><span>2</span>Feature Validation with Universities</h4>
+                    <h4><span>3</span>Market Research for Student Tools</h4>
+                    <h4><span>4</span>Creating Collaborative Features</h4>
+                    <h4><span>5</span>Career-Centric Vision</h4>
+                </div>
+                <div id="btm6-part3" class="btm6-parts">
+                    <h5>User Experience</h5>
+                    <h4><span>1</span>Profile creation</h4>
+                    <h4><span>2</span>Connection</h4>
+
+                </div>
+                <div id="btm6-part4" class="btm6-parts">
+                    <h5>Other Services</h5>
+                    <h4><span>1</span>Chat</h4>
+                    <h4><span>2</span>Integration</h4>
+                    <h4><span>2</span>Career Growth</h4>
+            
+                </div>
+                <div id="btm6-part5" class="btm6-parts">
+                    <h5>Platform Design</h5>
+                    <h4><span>1</span>Responsive</h4>
+                    <h4><span>2</span>Uncluttered</h4>
+
+                </div>
+            </div>
+        </div>
+        <div id="page7">
+            <h1>Contact Us</h1>
+            <section id="contact-details" class="section-p1">
+                <div class="details">
+                    <span>GET IN TOUCH</span>
+                    <h2>Visit us or contact us today</h2>
+                    <h3>Address</h3>
+                    <div>
+                        <li>
+                            <i class="fal fa-map"></i>
+                            <p>College of Engineering Adoor, Pathanamthitta, Kerala</p>
+                        </li>
+                        <li>
+                            <i class="far fa-envelope"></i>
+                            <p>nexo123@gmail.com</p>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone-alt"></i>
+                            <p>+919446783561</p>
+                        </li>
+                    </div>
+                </div>
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.24419300837!2d76.71553607399726!3d9.132403487363876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0611e606b00001%3A0x27dc62f29d54f358!2sCollege%20Of%20Engineering%2C%20Adoor!5e0!3m2!1sen!2sin!4v1735284786218!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </section>
+
+            <section class="full-form">
+                <div class="form-container">
+                    <h2>We love to hear from you</h2>
+                    <form>
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="E-mail" required>
+                        <input type="text" name="subject" placeholder="Subject" required>
+                        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+            <!-- Footer -->
+     <div class="footer">
+         <div class="container">
+             <div class="row">
+                 <div class="footer-col-1">
+                     <h3>Download Our App</h3>
+                     <p>Download App for Android and ios mobile phone.</p>
+                     <div class="app-logo">
+                         <img src="{% static 'img/footer/play-store.png' %}">
+                         <img src="{% static 'img/footer/app-store.png' %}">
+                     </div>
+                 </div>
+                 <div class="footer-col-2">
+                     <img src="{% static 'img/footer/logo.png' %}">
+                     <p>Our Purpose Is To Sustainably Make An Innovative Solutions For Students, Fostering Communication,
+                         Collaboration, And Engagement Through Secure And Intuitive Platforms.</p>
+                     </p>
+                 </div>
+                 <div class="footer-col-3">
+                     <h3>Useful Links</h3>
+                     <ul>
+                         <li>Coupons</li>
+                         <li>Blog Post</li>
+                         <li>Return Policy</li>
+                         <li>Join Affiliate</li>
+                     </ul>
+                 </div>
+                 <div class="footer-col-4">
+                     <h3>Follow Us</h3>
+                     <ul>
+                         <li>Facebook</li>
+                         <li>Twitter</li>
+                         <li>Instagram</li>
+                         <li>Youtube</li>
+                     </ul>
+                 </div>
+             </div>
+             <hr>
+             <p class="copyright">Copyright 2025 - NEXO</p>
+         </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+        integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{% static 'js/script_about.js' %}"></script>
+</body>
+
+</html>

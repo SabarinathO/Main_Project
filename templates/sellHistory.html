@@ -1,0 +1,90 @@
+{% extends 'baselayout.html' %}
+{% load static %}
+{% block content %}
+    <section id="pbanner" class="section-m1">
+        <h2 style="color: white;">#Sell<span> History</span></h2>
+    </section>
+
+    <section class="searchprev-bar">
+        <input type="text" id="search-input" placeholder="Search your item here">
+        <button id="search-btn">Search Items</button>
+    </section>
+
+    <!--Selling Pending item Section -->
+    <section class="order-list" id="pending-orders">
+        <h3><strong>Pending Products</strong></h3>
+        {% for item in pending_products_with_images %}
+        <div class="order-card" data-order-id="{{ order.id }}">
+            <h4>Sell ID: {{ item.product.id }}</h4>
+            <div class="order-info">
+                <div class="order-image">
+                    <img src="{{ item.product.images.first.image.url }}" alt="{{ item.product.name }}">
+                </div>
+                <div class="order-details">
+                    <h3>{{ item.product.name }}</h3>
+                    <p>₹{{ item.product.price }}</p>
+                    <p>Quantity: 1</p>
+                </div>
+            </div>
+
+            <div class="order-confirm">
+                <label>
+                    <input type="checkbox" class="confirm-checkbox">
+                    <a href="{% url 'itemWithdrawn' item.product.id %}" onclick="return confirmWithdrawal(event)" style="color: red; text-decoration: none;">✖ Item Withdrawn</a>
+                </label>
+            </div>           
+        </div>
+        {% empty %}
+        <p>No pending Products.</p>
+        {% endfor %}
+    </section>
+
+    <!-- Selled Item Section -->
+    <section class="order-list" id="delivered-orders">
+        <h2><strong>Selled Products</strong></h2>
+        {% for item in selled_products_with_images %}
+        <div class="order-card delivered">
+            <h4>Order ID: {{ item.product.id }}</h4>
+            <div class="order-info">
+                <div class="order-image">
+                    <img src="{{ item.product.images.first.image.url }}" alt="{{ item.product.name }}">
+                </div>
+                <div class="order-details">
+                    <h3>{{ item.product.name }}</h3>
+                    <p>₹{{ item.product.price }}</p>
+                    <p>Quantity: 1</p>
+                </div>
+            </div>
+            <div class="order-status">
+                <span class="status-delivered">
+                    <span class="dot">●</span> Sold on {{ item.delivered_date|date:"M d, Y" }}
+                </span>
+                <div class="customer-info">
+                    <div class="customer-detail">
+                        <i class="fas fa-user"></i>
+                        <span> {{ item.reciever }}</span>
+                    </div>
+                    <div class="customer-detail">
+                        <i class="fas fa-phone"></i>
+                        <span> {{ item.receiever_phone }}</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        {% empty %}
+        <p>No selled products yet.</p>
+        {% endfor %}
+    </section>
+
+    <script>
+        function confirmWithdrawal(event) {
+            event.preventDefault();  // Prevents the default link action
+            let userConfirm = confirm("Are you sure, you want to withdraw this item?");
+            
+            if (userConfirm) {
+                window.location.href = event.target.closest('a').href;  // Redirects if confirmed
+            }
+        }
+    </script>
+{% endblock %}

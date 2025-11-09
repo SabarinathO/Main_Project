@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link rel="stylesheet" href="{%static 'css/style_profile.css' %}">
+</head>
+<body>
+    <!-- Main -->
+
+    <main>
+        <div class="container">
+            <!------------- Left ----------->
+            <div class="left">
+
+                <!------Sidebar------>
+                {% include 'networking/leftSidebar.html' %}
+                <!------end of sidebar------->
+    
+            </div>
+
+
+            <!------------- Middle ----------->
+            <div class="profile">
+                <div class="profile-header">
+                    <div class="profile-picture">
+                        <img src="{%static 'img/networking/images/social logo.png' %}" alt="Profile Picture">
+                    </div>
+                    <div class="profile-info">
+                        <h2 class="username">{{ username }}</h2>
+                        <div class="profile-actions">
+                            <button class="btn">Edit Profile</button>
+                        </div>
+                        <div class="profile-stats">
+                            <span><b>4</b> posts</span>
+                            <span><b>40</b> followers</span>
+                            <span><b>30</b> following</span>
+                        </div>
+                        <p class="bio"><b>Full Stack Developer</b> ✨✨✨</p>
+                    </div>
+                </div>
+    
+                <div class="profile-posts">
+                    <h3>Posts</h3>
+                    <div class="posts-grid">
+                        <img src="{%static 'img/networking/images/img1.jpeg' %}" alt="Post 1">
+                        <img src="{%static 'img/networking/images/img2.jpeg' %}" alt="Post 2">
+                        <img src="{%static 'img/networking/images/img3.jpg' %}" alt="Post 3">
+                        <img src="{%static 'img/networking/images/img5.jpeg' %}" alt="Post 3">
+                    </div>
+                </div>
+            </div>
+
+            <!-------edit Profile----------->
+
+            <div id="editProfileModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Edit Profile</h2>
+                    <form id="editProfileForm">
+                        <!-- Profile Picture Upload -->
+                        <div class="profile-upload-container">
+                            <h5 style="font-family: poppins, sans-serif;">Profile Picture:</h5>
+                            <label for="profilePicture" class="profile-upload-label">
+                                <img id="profilePreview" src="{%static 'img/networking/images/default-avatar.png" alt="">
+                            </label>
+                            <input type="file" id="profilePicture" accept="image/*">
+                        </div>
+                        
+                        <!-- Username -->
+                        <label for="username">Username:</label>
+                        <input type="text" id="username">
+            
+                        <!-- Bio -->
+                        <label for="bio">Bio:</label>
+                        <textarea id="bio"></textarea>
+            
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+
+            <!------------- Right----------->
+        {% include 'networking/rightSidebar.html' %}
+
+            
+        </div>
+
+    
+    </main>
+
+    <!------------------------------theme customization--------------------->
+    {% include 'networking/theme.html' %}
+
+<script src="profile.js"></script>
+
+</body>
+</html>

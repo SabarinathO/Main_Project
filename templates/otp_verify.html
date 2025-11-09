@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <link rel="stylesheet" href="{% static 'css/style_otp.css' %}">
+</head>
+<body>
+    <div class="otp-container">
+        <h3>Enter OTP</h3>
+
+        <!-- Success message for OTP resend -->
+        {% if success %}
+        <div class="message success">{{ success }}</div>
+        {% endif %}
+
+        <!-- Error message for OTP verification -->
+        {% if error %}
+        <div class="message error">{{ error }}</div>
+        {% endif %}
+
+        <form id="otp-form" method="post" action="{% url 'verify_otp' %}">
+            {% csrf_token %}
+            <input type="hidden" name="email" value="{{ email }}">
+            <!-- Hidden field to combine all OTP inputs -->
+            <input type="hidden" id="full-otp" name="otp">
+
+            <div class="otp-input-wrapper">
+                <input type="text" maxlength="1" class="otp-input" name="otp1" required>
+                <input type="text" maxlength="1" class="otp-input" name="otp2" required>
+                <input type="text" maxlength="1" class="otp-input" name="otp3" required>
+                <input type="text" maxlength="1" class="otp-input" name="otp4" required>
+                <input type="text" maxlength="1" class="otp-input" name="otp5" required>
+                <input type="text" maxlength="1" class="otp-input" name="otp6" required>
+            </div>
+            <button type="submit" style="display: none;">Submit</button>
+        </form>
+
+        <!-- Resend OTP Link -->
+        <a href="{% url 'resend_otp' %}?email={{ email }}" class="resend-link">Resend OTP</a>
+    </div>
+
+    <script src="{% static 'js/script_otp.js' %}"></script>
+</body>
+</html>

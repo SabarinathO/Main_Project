@@ -1,0 +1,92 @@
+{% load static %}
+<div class="left">
+    <!------Sidebar------>
+    <div class="sidebar">
+        <a class="menu-item active">
+            <span><i class="uil uil-home"></i></span>
+        </a>
+        <a class="menu-item">
+            <span><i class="uil uil-user"></i></span>
+        </a>
+        <a class="menu-item" id="notifications">
+            <span><i class="uil uil-bell"><small class="notification-count">9+</small></i></span>
+            <!-------notification popup-------->
+        </a>
+        <a class="menu-item" id="messages-notifications">   
+            <span><i class="uil uil-envelope-edit"><small class="notification-count">9+</small></i></span>
+        </a>
+        <a class="menu-item">
+            <span><i class="uil uil-bookmark"></i></span>
+        </a>
+        <a class="menu-item">
+            <span><i class="uil uil-analytics"></i></span>
+        </a>
+        <a class="menu-item" id="theme">    
+            <span><i class="uil uil-palette"></i></span>
+        </a>
+        <a class="menu-item">
+            <span><i class="uil uil-setting"></i></span>
+        </a>
+    </div>
+    <!------end of sidebar------->
+</div>
+
+<!------middle---->
+<div class="messenger-container">
+    <!-- Upper Section -->
+    <div class="upper-section">
+        <div class="top-section">
+            <h2>{{ request.user.username }}</h2>
+            <i class="uil uil-users-alt" id="editIcon"></i>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <i class="uil uil-search"></i>
+            <input type="text" id="message-search" placeholder="Search messages...">
+        </div>
+
+        <!-- Scrollable Messages List -->
+        <div class="message-list">
+                    <!-- Group Chats -->
+            {% for group in group_chats %}
+            <div class="message unread">
+                <div class="profile-picture">
+                        {% if group.profile_pic %}
+                    <img src="{{ group.profile_pic.url }}" alt="">
+                        {% else %}
+                    <img src="{% static 'img/chat/images/user.jpeg' %}" alt="">
+                        {% endif %}
+                    <span class="status green"></span>
+                </div>
+                <div class="message-details">
+                    <a href="{% url 'groupchat' group.id %}">
+                    <h5>{{ group.groupname }}</h5>
+                    <p>Group chat with {{ group.participants.count }} members</p>
+                        </a>
+                    </div>
+                <span class="unread-indicator"></span>
+            </div>
+                    {% endfor %}
+            <!-- Individual Chats -->
+            {% for user in users %}
+            <div class="message unread">
+                <div class="profile-picture">
+                    <img src="{% static 'img/chat/images/user.jpeg' %}" alt="">
+                    <span class="status green"></span>
+                </div>
+                <div class="message-details">
+                    <a href="{% url 'chat' user.id %}">
+                        <h5>{{ user.username }}</h5>
+                        <p>{{ user.username }} sent an attachment.</p>
+                    </a>
+                </div>
+                <span class="unread-indicator"></span>
+            </div>
+            {% endfor %}
+        
+        </div>
+        
+    </div>
+
+</div>

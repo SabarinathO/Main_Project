@@ -1,0 +1,98 @@
+
+:root{
+    --dark-color-lightness: 17%;
+    --light-color-lightness: 95%;
+    --white-color-lightness: 100%;
+
+    --primary-color-hue: 252;
+    --color-white:hsl(252,30%,var(--white-color-lightness));
+    --color-dark:hsl(252,30%,17%);
+    --color-light:hsl(252,30%,var(--light-color-lightness));
+    --color-primary:hsl(252,75%,60%);
+    --color-secondary:hsl(252,100%,90%);
+    --color-gray:hsl(252,15%,65%);
+    --color-success:hsl(120,95%,65%);
+    --color-danger:hsl(0,95%,65%);
+    --color-dark:hsl(252,30%,var(--dark-color-lightness));
+    --color-black:hsl(252,30%,10%);
+    --border-radius: 2rem;
+    --card-border-radius: 1rem;
+    --btn-padding: 0.6rem 1rem;
+    --search-padding: 0.6rem 1rem;
+    --card-padding: 1rem;
+
+    --sticky-top-left: 5.4rem;
+    --sticky-top-right: -18rem;
+}
+/*-------------------theme-------------------*/
+
+.customize-theme .background{
+    margin-top: 2rem;
+}
+
+.customize-theme .choose-bg{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+.customize-theme .choose-bg > div{
+    padding: var(--card-padding);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 0.4rem;
+    cursor: pointer;
+}
+.customize-theme .choose-bg > div.active{
+    border: 2px solid var(--color-primary);
+}
+
+.customize-theme .choose-bg .bg-1{
+    background: white;
+    color: black;
+    box-shadow: 0 0 0.2rem var(--color-primary);
+}
+.customize-theme .choose-bg .bg-2{
+    background: hsl(252,30%,17%);
+    color: white;
+}
+.customize-theme .choose-bg .bg-3{
+    background: hsl(252,30%,10%);
+    color: white;
+}
+.customize-theme .choose-bg > div span{
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid var(--color-gray);
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+@media screen and (max-width : 1200px){
+    .container{
+        width: 96%;
+    }
+    main .container{
+        grid-template-columns: 5rem auto 30vw;
+        gap: 1rem;
+    }
+    .left{
+        width: 5rem;
+        z-index: 5;
+    }
+    main .container .left .profile{
+        display: none;
+    }
+    .sidebar h3{
+        display: none;
+    }
+    .left  .btn{
+        display: none;
+    }
+    .customize-theme .card{
+        width: 80vw;
+    }
+}

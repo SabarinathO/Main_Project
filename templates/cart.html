@@ -1,0 +1,73 @@
+{% extends 'baselayout.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block content %}
+    <body>
+        <section id="page-header2">
+            <h2>#Cart</h2>
+            <p>Your cart, your future favorites—just a step away!</p>
+            <a href="{% url 'previousOrders' %}"><button id="prev-order-btn">Previous Orders</button></a>
+        </section>
+        {% if order_items %}
+        <section id="cart" class="section-p1">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <td>Remove</td>
+                        <td>Image</td>
+                        <td>Product</td>
+                        <td>Price</td>
+                        <td>Quantity</td>
+                        <td>Subtotal</td>
+                    </tr>    
+                </thead>
+                <tbody>
+                    {% for item in order_items %}
+                    <tr>
+                        <td><a href="{% url 'removeItem' item.id %}"><i class="far fa-times-circle"></i></a></td>
+                        <td><img src="{{ item.product.images.first.image.url }}" alt=""></td>
+                        <td>{{ item.product.model }}</td>
+                        <td>{{ item.product.price }}</td>
+                        <td><input type="number" value="{{ item.quantity }}" readonly></td>
+                        <td>{{ item.product.price|subtotal:item.quantity }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <section id="cart-add" class="section-p1">
+            <div id="subtotal">
+                <h3>Cart Totals</h3>
+                <table>
+                    <tr>
+                        <td>Cart Subtotal</td>
+                        <td>RS {{ total_price }}</td>
+                    </tr>
+                    <tr>
+                        <td>Shipping</td>
+                        <td>Free</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total</strong></td>
+                        <td><strong>RS {{ total_price }}</strong> </td>
+                    </tr>
+                </table>
+                <a href="{% url 'checkout' %}"><button class="normal">Proceed to checkout</button></a>
+            </div>
+        </section>
+        {% else %}
+        <section id="cart" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 50vh; background: #f8f9fa; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+            <h3 style="font-size: 24px; font-weight: 600; color: #333; margin-bottom: 15px;">Your cart is empty</h3>
+            <a href="{% url 'products' %}">
+                <button style="background: #e2df07; color: white; font-size: 16px; font-weight: 500; padding: 10px 20px; border: none; border-radius: 25px; cursor: pointer; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); transition: all 0.3s ease-in-out;"
+                onmouseover="this.style.background='#b6c100'"
+                onmouseout="this.style.background='#e2df07'">
+                Continue Shopping
+            </button>
+            </a>
+        </section>
+        {% endif %}
+    </body>
+{% endblock %}
+</html>

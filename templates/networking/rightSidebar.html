@@ -1,0 +1,90 @@
+{% load static %}
+<div class="right">
+    <div class="messages">
+        <div class="heading">
+            <h4>Messages</h4><i class="uil uil-edit"></i>
+        </div>
+        <!---search bar-->
+        <div class="search-bar">
+            <i class="uil uil-search"></i>
+            <input type="search" placeholder="Search messages" id="message-search">
+        </div>
+        <!-----Messages----->
+        <div class="category">
+            <h6 class="active">Primary</h6>
+            <h6>General</h6>
+            <h6 class="message-requests">Requests(5)</h6>
+        </div>
+        <div class="message">
+            <div class="profile-picture">
+                <img src="{%static 'img/networking/images/pr9.avif' %}" alt="">
+            </div>
+            <div class="message-body">
+                <h5>Rohan</h5>
+                <p class="text-bold text-muted">Hey, how are you?</p>
+            </div>
+        </div>
+        <div class="message">
+            <div class="profile-picture">
+                <img src="{%static 'img/networking/images/pr3.jpeg' %}" alt="">
+                <div class="active"></div>
+            </div>
+            <div class="message-body">
+                <h5>Rahul</h5>
+                <p class="text-muted">Hii...</p>
+            </div>
+        </div>
+        <div class="message">
+            <div class="profile-picture">
+                <img src="{%static 'img/networking/images/profile-6.jpg' %}" alt="">
+            </div>
+            <div class="message-body">
+                <h5>Sophia</h5>
+                <p class="text-muted">where are you?</p>
+            </div>
+        </div>
+        <div class="message">
+            <div class="profile-picture">
+                <img src="{%static 'img/networking/images/pr2.jpg' %}" alt="">
+            </div>
+            <div class="message-body">
+                <h5>Ram</h5>
+                <p class="text-muted">Hey, how are you?</p>
+            </div>
+        </div>
+    </div>
+    <!---Friend req-->
+    <div class="friend-requests">
+        <h4>Requests</h4>
+        <div class="request">
+            <div class="info">
+                <div class="profile-picture">
+                    <img src="{%static 'img/networking/images/profile-2.jpg' %}" alt="">
+                </div>
+                <div>
+                    <h5>Manu</h5>
+                    <p class="text-muted">8 mutual friends</p>
+                </div>
+            </div>
+            <div class="action">
+                <button class="btn btn-primary">Accept</button>
+                <button class="btn ">Reject</button>
+            </div>
+        </div>
+        <div class="request">
+            <div class="info">
+                <div class="profile-picture">
+                    <img src="{%static 'img/networking/images/pr15.avif' %}" alt="">
+                </div>
+                <div>
+                    <h5>Malavika</h5>
+                    <p class="text-muted">8 mutual friends</p>
+                </div>
+            </div>
+            <div class="action">
+                <button class="btn btn-primary">Accept</button>
+                <button class="btn ">Reject</button>
+            </div>
+        </div>
+    </div>
+</div>

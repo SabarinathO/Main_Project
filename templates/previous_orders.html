@@ -1,0 +1,76 @@
+{% extends 'baselayout.html' %}
+{% load static %}
+{% block content %}
+    <section id="pbanner" class="section-m1">
+        <h2 style="color: white;">#Previous<span> Orders</span></h2>
+    </section>
+
+    <section class="searchprev-bar">
+        <input type="text" id="search-input" placeholder="Search your orders here">
+        <button id="search-btn">Search Orders</button>
+    </section>
+
+    <!-- Pending Orders Section -->
+    <section class="order-list" id="pending-orders">
+        <h3><strong>Pending Confirmation</strong></h3>
+        {% for order in pending_orders %}
+        <div class="order-card" data-order-id="{{ order.id }}">
+            <h4>Order ID: {{ order.id }}</h4>
+            {% for item in order.items.all %}
+            <div class="order-info">
+                <div class="order-image">
+                    <img src="{{ item.product.images.first.image.url }}" alt="{{ item.product.name }}">
+                </div>
+                <div class="order-details">
+                    <h3>{{ item.product.name }}</h3>
+                    <p>₹{{ item.product.price }}</p>
+                    <p>Quantity: {{ item.quantity }}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="order-confirm">
+                <label>
+                    <input type="radio" name="order{{ order.id }}" class="confirm-checkbox" value="received">
+                    <span style="color: green;">✔</span> Item Received
+                </label>
+                <label>
+                    <input type="radio" name="order{{ order.id }}" class="confirm-checkbox" value="not-received">
+                    <span style="color: red;">✖</span> Item Not Received
+                </label>
+            </div>           
+        </div>
+        {% empty %}
+        <p>No pending orders.</p>
+        {% endfor %}
+    </section>
+
+    <!-- Delivered Orders Section -->
+    <section class="order-list" id="delivered-orders">
+        <h2><strong>Delivered Orders</strong></h2>
+        {% for order in delivered_orders %}
+        <div class="order-card delivered">
+            <h4>Order ID: {{ order.id }}</h4>
+            {% for item in order.items.all %}
+            <div class="order-info">
+                <div class="order-image">
+                    <img src="{{ item.product.images.first.image.url }}" alt="{{ item.product.name }}">
+                </div>
+                <div class="order-details">
+                    <h3>{{ item.product.name }}</h3>
+                    <p>₹{{ item.product.price }}</p>
+                    <p>Quantity: {{ item.quantity }}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="order-status">
+                <span class="status-delivered">● Delivered on {{ order.delivered_date|date:"M d, Y" }}</span>
+                <p>Your item has been delivered.</p>
+            </div>
+        </div>
+        {% empty %}
+        <p>No delivered orders yet.</p>
+        {% endfor %}
+    </section>
+{% endblock %}
